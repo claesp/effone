@@ -20,12 +20,16 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	defer conn.Close()
 
 	fmt.Println("listening on", addr)
-
 	for {
-		read(conn)
+		handle(conn)
 	}
+}
+
+func handle(conn *net.UDPConn) {
+	read(conn)
 }
 
 func read(conn *net.UDPConn) {
