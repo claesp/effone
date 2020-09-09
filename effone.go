@@ -16,15 +16,34 @@ func main() {
 		return
 	}
 
-	conn, err := net.ListenUDP("udp", addr)
+	go func() {
+		conn, err := net.ListenUDP("udp", addr)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer conn.Close()
+
+		fmt.Println("listening on", addr)
+		for {
+			handle(conn)
+		}
+	}()
+
+	addr2, err := net.ResolveUDPAddr("udp", ":20778")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	conn2, err := net.ListenUDP("udp", addr2)
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer conn.Close()
+	defer conn2.Close()
 
-	fmt.Println("listening on", addr)
+	fmt.Println("listening on", addr2)
 	for {
-		handle(conn)
+		handle(conn2)
 	}
 }
 
