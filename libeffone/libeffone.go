@@ -278,3 +278,25 @@ type PacketCarStatusData struct {
 	Header        PacketHeader // Header
 	CarStatusData [22]CarStatusData
 }
+
+type FinalClassificationData struct {
+	Position         uint8    // Finishing position
+	NumLaps          uint8    // Number of laps completed
+	GridPosition     uint8    // Grid position of the car
+	Points           uint8    // Number of points scored
+	NumPitStops      uint8    // Number of pit stops made
+	ResultStatus     uint8    // Result status - 0 = invalid, 1 = inactive, 2 = active // 3 = finished, 4 = disqualified, 5 = not classified // 6 = retired
+	BestLapTime      float32  // Best lap time of the session in seconds
+	TotalRaceTime    float64  // Total race time in seconds without penalties
+	PenaltiesTime    uint8    // Total penalties accumulated in seconds
+	NumPenalties     uint8    // Number of penalties applied to this driver
+	TyreStints       uint8    // Number of tyres stints up to maximum
+	TyreStintsActual [8]uint8 // Actual tyres used by this driver
+	TyreStintsVisual [8]uint8 // Visual tyres used by this driver
+}
+
+type PacketFinalClassificationData struct {
+	Header             PacketHeader // Header
+	NumCars            uint8        // Number of cars in the final classification
+	ClassificationData [22]FinalClassificationData
+}
