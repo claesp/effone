@@ -525,17 +525,98 @@ type PacketMotionData struct {
 	FrontWheelsAngle       float32           // Current front wheels angle in radians
 }
 
+type ZoneFlag int8
+
+const (
+	ZoneFlagUnknown = -1
+	ZoneFlagNone    = 0
+	ZoneFlagGreen   = 1
+	ZoneFlagBlue    = 2
+	ZoneFlagYellow  = 3
+	ZoneFlagRed     = 4
+)
+
+func (zf ZoneFlag) String() string {
+	switch zf {
+	case ZoneFlagUnknown:
+		return "Unknown"
+	case ZoneFlagNone:
+		return "None"
+	case ZoneFlagGreen:
+		return "Green"
+	case ZoneFlagBlue:
+		return "Blue"
+	case ZoneFlagYellow:
+		return "Yellow"
+	case ZoneFlagRed:
+		return "Red"
+	}
+
+	return "Unknown"
+}
+
 type MarshalZone struct {
-	ZoneStart float32 // Fraction (0..1) of way through the lap the marshal zone starts
-	ZoneFlag  int8    // -1 = invalid/unknown, 0 = none, 1 = green, 2 = blue, 3 = yellow, 4 = red
+	ZoneStart float32  // Fraction (0..1) of way through the lap the marshal zone starts
+	ZoneFlag  ZoneFlag // -1 = invalid/unknown, 0 = none, 1 = green, 2 = blue, 3 = yellow, 4 = red
+}
+
+type SessionType uint8
+
+const (
+	SessionTypeUnknown = 0
+	SessionTypeP1      = 1
+	SessionTypeP2      = 2
+	SessionTypeP3      = 3
+	SessionTypeShortP  = 4
+	SessionTypeQ1      = 5
+	SessionTypeQ2      = 6
+	SessionTypeQ3      = 7
+	SessionTypeShortQ  = 8
+	SessionTypeOSQ     = 9
+	SessionTypeR       = 10
+	SessionTypeR2      = 11
+	SessionTypeTT      = 12
+)
+
+func (st SessionType) String() string {
+	switch st {
+	case SessionTypeUnknown:
+		return "Unknown"
+	case SessionTypeP1:
+		return "Practice 1"
+	case SessionTypeP2:
+		return "Practice 2"
+	case SessionTypeP3:
+		return "Practice 3"
+	case SessionTypeShortP:
+		return "Short Practice"
+	case SessionTypeQ1:
+		return "Qualifier 1"
+	case SessionTypeQ2:
+		return "Qualifier 2"
+	case SessionTypeQ3:
+		return "Qualifier 3"
+	case SessionTypeShortQ:
+		return "Short Qualifier"
+	case SessionTypeOSQ:
+		return "One-shot Qualifier"
+	case SessionTypeR:
+		return "Race"
+	case SessionTypeR2:
+		return "Race 2"
+	case SessionTypeTT:
+		return "Time Trial"
+	}
+
+	return "Unknown"
 }
 
 type WeatherForecastSample struct {
-	SessionType      uint8 // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P, 5 = Q1 // 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ, 10 = R, 11 = R2 // 12 = Time Trial
-	TimeOffset       uint8 // Time in minutes the forecast is for
-	Weather          uint8 // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
-	TrackTemperature int8  // Track temp. in degrees celsius
-	AirTemperature   int8  // Air temp. in degrees celsius
+	SessionType      SessionType // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P, 5 = Q1 // 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ, 10 = R, 11 = R2 // 12 = Time Trial
+	TimeOffset       uint8       // Time in minutes the forecast is for
+	Weather          uint8       // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
+	TrackTemperature int8        // Track temp. in degrees celsius
+	AirTemperature   int8        // Air temp. in degrees celsius
 }
 
 type PacketSessionData struct {
@@ -545,7 +626,7 @@ type PacketSessionData struct {
 	AirTemperature            int8                      // Air temp. in degrees celsius
 	TotalLaps                 uint8                     // Total number of laps in this race
 	TrackLength               uint16                    // Track length in metres
-	SessionType               uint8                     // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P // 5 = Q1, 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ // 10 = R, 11 = R2, 12 = Time Trial
+	SessionType               SessionType               // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P // 5 = Q1, 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ // 10 = R, 11 = R2, 12 = Time Trial
 	TrackID                   int8                      // -1 for unknown, 0-21 for tracks, see appendix
 	Formula                   uint8                     // Formula, 0 = F1 Modern, 1 = F1 Classic, 2 = F2, // 3 = F1 Generic
 	SessionTimeLeft           uint16                    // Time left in session in seconds
