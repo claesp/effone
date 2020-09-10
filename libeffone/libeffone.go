@@ -39,7 +39,7 @@ func (pid PacketHeaderPacketID) String() string {
 		return "Lobby Info"
 	}
 
-	return "Unknown Packet ID"
+	return "Unknown packet"
 }
 
 type TeamID uint8
@@ -104,7 +104,7 @@ const (
 	TeamIDMyTeam2020              = 255 // My Team
 )
 
-func (tid *TeamID) String() string {
+func (tid TeamID) String() string {
 	switch tid {
 	case TeamIDMercedes2020:
 		return "Mercedes"
@@ -223,6 +223,252 @@ func (tid *TeamID) String() string {
 	}
 
 	return "Unknown team"
+}
+
+type DriverID uint8
+
+const (
+	DriverIDCarlosSainz         = 0
+	DriverIDDaniilKvyat         = 1
+	DriverIDDanielRicciardo     = 2
+	DriverIDKimiRaikkonen       = 6
+	DriverIDLewisHamilton       = 7
+	DriverIDMaxVerstappen       = 9
+	DriverIDNicoHulkenberg      = 10
+	DriverIDKevinMagnussen      = 11
+	DriverIDRomainGrosjean      = 12
+	DriverIDSebastianVettel     = 13
+	DriverIDSergioPerez         = 14
+	DriverIDValtteriBottas      = 15
+	DriverIDEstebanOcon         = 17
+	DriverIDLanceStroll         = 19
+	DriverIDArronBarnes         = 20
+	DriverIDMartinGiles         = 21
+	DriverIDAlexMurray          = 22
+	DriverIDLucasRoth           = 23
+	DriverIDIgorCorreia         = 24
+	DriverIDSophieLevasseur     = 25
+	DriverIDJonasSchiffer       = 26
+	DriverIDAlainForest         = 27
+	DriverIDJayLetourneau       = 28
+	DriverIDEstoSaari           = 29
+	DriverIDYasarAtiyeh         = 30
+	DriverIDCallistoCalabresi   = 31
+	DriverIDNaotaIzum           = 32
+	DriverIDHowardClarke        = 33
+	DriverIDWilheimKaufmann     = 34
+	DriverIDMarieLaursen        = 35
+	DriverIDFlavioNieves        = 36
+	DriverIDPeterBelousov       = 37
+	DriverIDKlimekMichalski     = 38
+	DriverIDSantiagoMoreno      = 39
+	DriverIDBenjaminCoppens     = 40
+	DriverIDNoahVisser          = 41
+	DriverIDGertWaldmuller      = 42
+	DriverIDJulianQuesada       = 43
+	DriverIDDanielJones         = 44
+	DriverIDArtemMarkelov       = 45
+	DriverIDTadasukeMakino      = 46
+	DriverIDSeanGelael          = 47
+	DriverIDNyckDeVries         = 48
+	DriverIDJackAitken          = 49
+	DriverIDGeorgeRussell       = 50
+	DriverIDMaximilianGunther   = 51
+	DriverIDNireiFukuzumi       = 52
+	DriverIDLucaGhiotto         = 53
+	DriverIDLandoNorris         = 54
+	DriverIDSergioSetteCamara   = 55
+	DriverIDLouisDeletraz       = 56
+	DriverIDAntonioFuoco        = 57
+	DriverIDCharlesLeclerc      = 58
+	DriverIDPierreGasly         = 59
+	DriverIDAlexanderAlbon      = 62
+	DriverIDNicholasLatifi      = 63
+	DriverIDDorianBoccolacci    = 64
+	DriverIDNikoKari            = 65
+	DriverIDRobertoMerhi        = 66
+	DriverIDArjunMaini          = 67
+	DriverIDAlessioLorandi      = 68
+	DriverIDRubenMeijer         = 69
+	DriverIDRashidNair          = 70
+	DriverIDJackTremblay        = 71
+	DriverIDAntonioGiovinazzi   = 74
+	DriverIDRobertKubica        = 75
+	DriverIDNobuharuMatsushita  = 78
+	DriverIDNikitaMazepin       = 79
+	DriverIDGuanyaZhou          = 80
+	DriverIDMickSchumacher      = 81
+	DriverIDCallumIlott         = 82
+	DriverIDJualManuelCorrera   = 83
+	DriverIDJordanKing          = 84
+	DriverIDMahaveerRaghunathan = 85
+	DriverIDTatianaCalderon     = 86
+	DriverIDAnthoineHubert      = 87
+	DriverIDGuilianoAlesi       = 88
+	DriverIDRalphBoschung       = 89
+)
+
+func (did DriverID) String() string {
+	switch did {
+	case DriverIDCarlosSainz:
+		return "Carlos Sainz"
+	case DriverIDDaniilKvyat:
+		return "Daniil Kvyat"
+	case DriverIDDanielRicciardo:
+		return "Daniel Ricciardo"
+	case DriverIDKimiRaikkonen:
+		return "Kimi Räikkönen"
+	case DriverIDLewisHamilton:
+		return "Lewis Hamilton"
+	case DriverIDMaxVerstappen:
+		return "Max Verstappen"
+	case DriverIDNicoHulkenberg:
+		return "Nico Hulkenburg"
+	case DriverIDKevinMagnussen:
+		return "Kevin Magnussen"
+	case DriverIDRomainGrosjean:
+		return "Romain Grosjean"
+	case DriverIDSebastianVettel:
+		return "Sebastian Vettel"
+	case DriverIDSergioPerez:
+		return "Sergio Perez"
+	case DriverIDValtteriBottas:
+		return "Valtteri Bottas"
+	case DriverIDEstebanOcon:
+		return "Esteban Ocon"
+	case DriverIDLanceStroll:
+		return "Lance Stroll"
+	case DriverIDArronBarnes:
+		return "Arron Barnes"
+	case DriverIDMartinGiles:
+		return "Martin Giles"
+	case DriverIDAlexMurray:
+		return "Alex Murray"
+	case DriverIDLucasRoth:
+		return "Lucas Roth"
+	case DriverIDIgorCorreia:
+		return "Igor Correia"
+	case DriverIDSophieLevasseur:
+		return "Sophie Levasseur"
+	case DriverIDJonasSchiffer:
+		return "Jonas Schiffer"
+	case DriverIDAlainForest:
+		return "Alain Forest"
+	case DriverIDJayLetourneau:
+		return "Jay Letourneau"
+	case DriverIDEstoSaari:
+		return "Esto Saari"
+	case DriverIDYasarAtiyeh:
+		return "Yasar Atiyeh"
+	case DriverIDCallistoCalabresi:
+		return "Callisto Calabresi"
+	case DriverIDNaotaIzum:
+		return "Naota Izum"
+	case DriverIDHowardClarke:
+		return "Howard Clarke"
+	case DriverIDWilheimKaufmann:
+		return "Wilheim Kaufmann"
+	case DriverIDMarieLaursen:
+		return "Marie Laursen"
+	case DriverIDFlavioNieves:
+		return "Flavio Nieves"
+	case DriverIDPeterBelousov:
+		return "Peter Belousov"
+	case DriverIDKlimekMichalski:
+		return "Klimek Michalski"
+	case DriverIDSantiagoMoreno:
+		return "Santiago Moreno"
+	case DriverIDBenjaminCoppens:
+		return "Benjamin Coppens"
+	case DriverIDNoahVisser:
+		return "Noah Visser"
+	case DriverIDGertWaldmuller:
+		return "Gert Waldmuller"
+	case DriverIDJulianQuesada:
+		return "Julian Quesada"
+	case DriverIDDanielJones:
+		return "Daniel Jones"
+	case DriverIDArtemMarkelov:
+		return "Artem Markelov"
+	case DriverIDTadasukeMakino:
+		return "Tadasuke Makino"
+	case DriverIDSeanGelael:
+		return "Sean Gelael"
+	case DriverIDNyckDeVries:
+		return "Nyck De Vries"
+	case DriverIDJackAitken:
+		return "Jack Aitken"
+	case DriverIDGeorgeRussell:
+		return "George Russell"
+	case DriverIDMaximilianGunther:
+		return "Maximilian Günther"
+	case DriverIDNireiFukuzumi:
+		return "Nirei Fukuzumi"
+	case DriverIDLucaGhiotto:
+		return "Luca Ghiotto"
+	case DriverIDLandoNorris:
+		return "Lando Norris"
+	case DriverIDSergioSetteCamara:
+		return "Sérgio Sette Câmara"
+	case DriverIDLouisDeletraz:
+		return "Louis Delétraz"
+	case DriverIDAntonioFuoco:
+		return "Antonio Fuoco"
+	case DriverIDCharlesLeclerc:
+		return "Charles Leclerc"
+	case DriverIDPierreGasly:
+		return "Pierre Gasly"
+	case DriverIDAlexanderAlbon:
+		return "Alexander Albon"
+	case DriverIDNicholasLatifi:
+		return "Nicholas Latifi"
+	case DriverIDDorianBoccolacci:
+		return "Dorian Boccolacci"
+	case DriverIDNikoKari:
+		return "Niko Kari"
+	case DriverIDRobertoMerhi:
+		return "Roberto Merhi"
+	case DriverIDArjunMaini:
+		return "Arjun Maini"
+	case DriverIDAlessioLorandi:
+		return "Alessio Lorandi"
+	case DriverIDRubenMeijer:
+		return "Ruben Meijer"
+	case DriverIDRashidNair:
+		return "Rashid Nair"
+	case DriverIDJackTremblay:
+		return "Jack Tremblay"
+	case DriverIDAntonioGiovinazzi:
+		return "Antonio Giovinazzi"
+	case DriverIDRobertKubica:
+		return "Robert Kubica"
+	case DriverIDNobuharuMatsushita:
+		return "Nobuharu Matsushita"
+	case DriverIDNikitaMazepin:
+		return "Nikita Mazepin"
+	case DriverIDGuanyaZhou:
+		return "Guanya Zhou"
+	case DriverIDMickSchumacher:
+		return "Mick Schumacher"
+	case DriverIDCallumIlott:
+		return "Callum Ilott"
+	case DriverIDJualManuelCorrera:
+		return "Juan Manuel Correa"
+	case DriverIDJordanKing:
+		return "Jordan King"
+	case DriverIDMahaveerRaghunathan:
+		return "Mahaveer Raghunathan"
+	case DriverIDTatianaCalderon:
+		return "Tatiana Calderon"
+	case DriverIDAnthoineHubert:
+		return "Anthoine Hubert 😍"
+	case DriverIDGuilianoAlesi:
+		return "Guiliano Alesi"
+	case DriverIDRalphBoschung:
+		return "Ralph Boschung"
+	}
+
+	return "Unknown driver"
 }
 
 type PacketHeader struct {
@@ -395,7 +641,7 @@ type PacketEventData struct {
 
 type ParticipantData struct {
 	AIControlled  uint8     // Whether the vehicle is AI (1) or Human (0) controlled
-	DriverID      uint8     // Driver id - see appendix
+	DriverID      DriverID  // Driver id - see appendix
 	TeamID        TeamID    // Team id - see appendix
 	RaceNumber    uint8     // Race number of the car
 	Nationality   uint8     // Nationality of the driver
