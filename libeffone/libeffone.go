@@ -42,6 +42,189 @@ func (pid PacketHeaderPacketID) String() string {
 	return "Unknown Packet ID"
 }
 
+type TeamID uint8
+
+const (
+	TeamIDMercedes2020            = 0   // Mercedes
+	TeamIDFerrari2020             = 1   // Ferrari
+	TeamIDRedBull2020             = 2   // Red Bull Racing
+	TeamIDWilliams2020            = 3   // Williams
+	TeamIDRacingPoint2020         = 4   // Racing Point
+	TeamIDRenault2020             = 5   // Renault
+	TeamIDAlphaTauri2020          = 6   // Alpha Tauri
+	TeamIDHaas2020                = 7   // Haas
+	TeamIDMcLaren2020             = 8   // McLaren
+	TeamIDAlfaRomeo2020           = 9   // Alfa Romeo
+	TeamIDMcLaren1988             = 10  // McLaren 1988
+	TeamIDMcLaren1991             = 11  // McLaren 1991
+	TeamIDWilliams1992            = 12  // Williams 1992
+	TeamIDFerrari1995             = 13  // Ferrari 1995
+	TeamIDWilliams1996            = 14  // Williams 1996
+	TeamIDMcLaren1998             = 15  // McLaren 1998
+	TeamIDFerrari2002             = 16  // Ferrari 2002
+	TeamIDFerrari2004             = 17  // Ferrari 2004
+	TeamIDRenault2006             = 18  // Renault 2006
+	TeamIDFerrari2007             = 19  // Ferrari 2007
+	TeamIDMcLaren2008             = 20  // McLaren 2008
+	TeamIDRedBull2010             = 21  // Red Bull 2010
+	TeamIDFerrari1976             = 22  // Ferrari 1976
+	TeamIDARTGrandPrix2020        = 23  // ART Grand Prix
+	TeamIDCamposVexatecRacing2020 = 24  // Campos Vexatec Racing
+	TeamIDCarlin2020              = 25  // Carlin
+	TeamIDCharouzRacingSystem2020 = 26  // Charouz Racing System
+	TeamIDDams2020                = 27  // DAMS
+	TeamIDRussianTime2020         = 28  // Russian Time
+	TeamIDMPMotorsport2020        = 29  // MP Motorsport
+	TeamIDPertamina2020           = 30  // Pertamina
+	TeamIDMcLaren1990             = 31  // McLaren 1990
+	TeamIDTrident2020             = 32  // Trident
+	TeamIDBWTArden2020            = 33  // BWT Arden
+	TeamIDMcLaren1976             = 34  // McLaren 1976
+	TeamIDLotus1972               = 35  // Lotus 1972
+	TeamIDFerrari1979             = 36  // Ferrari 1979
+	TeamIDMcLaren1982             = 37  // McLaren 1982
+	TeamIDWilliams2003            = 38  // Williams 2003
+	TeamIDBrawn2009               = 39  // Brawn 2009
+	TeamIDLotus1978               = 40  // Lotus 1978
+	TeamIDGeneric2020             = 41  // F1 Generic car
+	TeamIDArtGP2019               = 42  // Art GP ’19
+	TeamIDCampos2019              = 43  // Campos ’19
+	TeamIDCarlin2019              = 44  // Carlin ’19
+	TeamIDSauberJuniorCharouz2019 = 45  // Sauber Junior Charouz ’19
+	TeamIDDams2019                = 46  // Dams ’19
+	TeamIDUniVirtuosi2019         = 47  // Uni-Virtuosi ‘19
+	TeamIDMPMotorsport2019        = 48  // MP Motorsport ‘19
+	TeamIDPrema2019               = 49  // Prema ’19
+	TeamIDTrident2019             = 50  // Trident ’19
+	TeamIDArden2019               = 51  // Arden ’19
+	TeamIDBenetton1994            = 53  // Benetton 1994
+	TeamIDBenetton1995            = 54  // Benetton 1995
+	TeamIDFerrari2000             = 55  // Ferrari 2000
+	TeamIDJordan1991              = 56  // Jordan 1991
+	TeamIDMyTeam2020              = 255 // My Team
+)
+
+func (tid *TeamID) String() string {
+	switch tid {
+	case TeamIDMercedes2020:
+		return "Mercedes"
+	case TeamIDFerrari2020:
+		return "Ferrari"
+	case TeamIDRedBull2020:
+		return "Red Bull Racing"
+	case TeamIDWilliams2020:
+		return "Williams"
+	case TeamIDRacingPoint2020:
+		return "Racing Point"
+	case TeamIDRenault2020:
+		return "Renault"
+	case TeamIDAlphaTauri2020:
+		return "Alpha Tauri"
+	case TeamIDHaas2020:
+		return "Haas"
+	case TeamIDMcLaren2020:
+		return "McLaren"
+	case TeamIDAlfaRomeo2020:
+		return "Alfa Romeo"
+	case TeamIDMcLaren1988:
+		return "McLaren 1988"
+	case TeamIDMcLaren1991:
+		return "McLaren 1991"
+	case TeamIDWilliams1992:
+		return "Williams 1992"
+	case TeamIDFerrari1995:
+		return "Ferrari 1995"
+	case TeamIDWilliams1996:
+		return "Williams 1996"
+	case TeamIDMcLaren1998:
+		return "McLaren 1998"
+	case TeamIDFerrari2002:
+		return "Ferrari 2002"
+	case TeamIDFerrari2004:
+		return "Ferrari 2004"
+	case TeamIDRenault2006:
+		return "Renault 2006"
+	case TeamIDFerrari2007:
+		return "Ferrari 2007"
+	case TeamIDMcLaren2008:
+		return "McLaren 2008"
+	case TeamIDRedBull2010:
+		return "Red Bull 2010"
+	case TeamIDFerrari1976:
+		return "Ferrari 1976"
+	case TeamIDARTGrandPrix2020:
+		return "ART Grand Prix"
+	case TeamIDCamposVexatecRacing2020:
+		return "Campos Vexatec Racing"
+	case TeamIDCarlin2020:
+		return "Carlin"
+	case TeamIDCharouzRacingSystem2020:
+		return "Charouz Racing System"
+	case TeamIDDams2020:
+		return "DAMS"
+	case TeamIDRussianTime2020:
+		return "Russian Time"
+	case TeamIDMPMotorsport2020:
+		return "MP Motorsport"
+	case TeamIDPertamina2020:
+		return "Pertamina"
+	case TeamIDMcLaren1990:
+		return "McLaren 1990"
+	case TeamIDTrident2020:
+		return "Trident"
+	case TeamIDBWTArden2020:
+		return "BWT Arden"
+	case TeamIDMcLaren1976:
+		return "McLaren 1976"
+	case TeamIDLotus1972:
+		return "Lotus 1972"
+	case TeamIDFerrari1979:
+		return "Ferrari 1979"
+	case TeamIDMcLaren1982:
+		return "McLaren 1982"
+	case TeamIDWilliams2003:
+		return "Williams 2003"
+	case TeamIDBrawn2009:
+		return "Brawn 2009"
+	case TeamIDLotus1978:
+		return "Lotus 1978"
+	case TeamIDGeneric2020:
+		return "F1 Generic car"
+	case TeamIDArtGP2019:
+		return "Art GP ’19"
+	case TeamIDCampos2019:
+		return "Campos ’19"
+	case TeamIDCarlin2019:
+		return "Carlin ’19"
+	case TeamIDSauberJuniorCharouz2019:
+		return "Sauber Junior Charouz ’19"
+	case TeamIDDams2019:
+		return "Dams ’19"
+	case TeamIDUniVirtuosi2019:
+		return "Uni-Virtuosi ‘19"
+	case TeamIDMPMotorsport2019:
+		return "MP Motorsport ‘19"
+	case TeamIDPrema2019:
+		return "Prema ’19"
+	case TeamIDTrident2019:
+		return "Trident ’19"
+	case TeamIDArden2019:
+		return "Arden ’19"
+	case TeamIDBenetton1994:
+		return "Benetton 1994"
+	case TeamIDBenetton1995:
+		return "Benetton 1995"
+	case TeamIDFerrari2000:
+		return "Ferrari 2000"
+	case TeamIDJordan1991:
+		return "Jordan 1991"
+	case TeamIDMyTeam2020:
+		return "My Team"
+	}
+
+	return "Unknown team"
+}
+
 type PacketHeader struct {
 	PacketFormat            uint16               // 2020
 	GameMajorVersion        uint8                // Game major version - "X.00"
@@ -213,7 +396,7 @@ type PacketEventData struct {
 type ParticipantData struct {
 	AIControlled  uint8     // Whether the vehicle is AI (1) or Human (0) controlled
 	DriverID      uint8     // Driver id - see appendix
-	TeamID        uint8     // Team id - see appendix
+	TeamID        TeamID    // Team id - see appendix
 	RaceNumber    uint8     // Race number of the car
 	Nationality   uint8     // Nationality of the driver
 	Name          [48]uint8 // Name of participant in UTF-8 format – null terminated // Will be truncated with … (U+2026) if too long
@@ -345,7 +528,7 @@ type PacketFinalClassificationData struct {
 
 type LobbyInfoData struct {
 	AIControlled uint8     // Whether the vehicle is AI (1) or Human (0) controlled
-	TeamID       uint8     // Team id - see appendix (255 if no team currently selected)
+	TeamID       TeamID    // Team id - see appendix (255 if no team currently selected)
 	Nationality  uint8     // Nationality of the driver
 	Name         [48]uint8 // Name of participant in UTF-8 format – null terminated // Will be truncated with ... (U+2026) if too long
 	ReadyStatus  uint8     // 0 = not ready, 1 = ready, 2 = spectating
