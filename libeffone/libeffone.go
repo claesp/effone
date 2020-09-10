@@ -611,23 +611,155 @@ func (st SessionType) String() string {
 	return "Unknown"
 }
 
+type Weather uint8
+
+const (
+	WeatherClear      = 0
+	WeatherLightCloud = 1
+	WeatherOvercast   = 2
+	WeatherLightRain  = 3
+	WeatherHeavyRain  = 4
+	WeatherStorm      = 5
+)
+
+func (w Weather) String() string {
+	switch w {
+	case WeatherClear:
+		return "Clear"
+	case WeatherLightCloud:
+		return "Light Clouds"
+	case WeatherOvercast:
+		return "Overcast"
+	case WeatherLightRain:
+		return "Light Rain"
+	case WeatherHeavyRain:
+		return "Heavy Rain"
+	case WeatherStorm:
+		return "Storm"
+	}
+
+	return "Unknown"
+}
+
+type CelciusTemperature int8
+
+func (ct CelciusTemperature) Fahrenheit() float32 {
+	return float32(float32(ct)*1.8 + 32.0)
+}
+
 type WeatherForecastSample struct {
-	SessionType      SessionType // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P, 5 = Q1 // 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ, 10 = R, 11 = R2 // 12 = Time Trial
-	TimeOffset       uint8       // Time in minutes the forecast is for
-	Weather          uint8       // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
-	TrackTemperature int8        // Track temp. in degrees celsius
-	AirTemperature   int8        // Air temp. in degrees celsius
+	SessionType      SessionType        // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P, 5 = Q1 // 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ, 10 = R, 11 = R2 // 12 = Time Trial
+	TimeOffset       uint8              // Time in minutes the forecast is for
+	Weather          Weather            // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
+	TrackTemperature CelciusTemperature // Track temp. in degrees celsius
+	AirTemperature   CelciusTemperature // Air temp. in degrees celsius
+}
+
+type TrackID int8
+
+const (
+	TrackIDUnknown          = -1
+	TrackIDMelbourne        = 0
+	TrackIDPaulRicard       = 1
+	TrackIDShanghai         = 2
+	TrackIDBahrain          = 3
+	TrackIDCatalunya        = 4
+	TrackIDMonaco           = 5
+	TrackIDMontreal         = 6
+	TrackIDSilverstone      = 7
+	TrackIDHockenheim       = 8
+	TrackIDHungaroring      = 9
+	TrackIDSpa              = 10
+	TrackIDMonza            = 11
+	TrackIDSingapore        = 12
+	TrackIDSuzuka           = 13
+	TrackIDAbuDhabi         = 14
+	TrackIDTexas            = 15
+	TrackIDBrazil           = 16
+	TrackIDAustria          = 17
+	TrackIDSochi            = 18
+	TrackIDMexico           = 19
+	TrackIDBaku             = 20
+	TrackIDBahrainShort     = 21
+	TrackIDSilverstoneShort = 22
+	TrackIDTexasShort       = 23
+	TrackIDSuzukaShort      = 24
+	TrackIDHanoi            = 25
+	TrackIDZandvoort        = 26
+)
+
+func (tid TrackID) String() string {
+	switch tid {
+	case TrackIDUnknown:
+		return "Unknown"
+	case TrackIDMelbourne:
+		return "Melbourne"
+	case TrackIDPaulRicard:
+		return "Paul Ricard"
+	case TrackIDShanghai:
+		return "Shanghai"
+	case TrackIDBahrain:
+		return "Bahrain"
+	case TrackIDCatalunya:
+		return "Catalunya"
+	case TrackIDMonaco:
+		return "Monaco"
+	case TrackIDMontreal:
+		return "Montreal"
+	case TrackIDSilverstone:
+		return "Silverstone"
+	case TrackIDHockenheim:
+		return "Hockenheim"
+	case TrackIDHungaroring:
+		return "Hungaroring"
+	case TrackIDSpa:
+		return "Spa"
+	case TrackIDMonza:
+		return "Monza"
+	case TrackIDSingapore:
+		return "Singapore"
+	case TrackIDSuzuka:
+		return "Suzuka"
+	case TrackIDAbuDhabi:
+		return "Abu Dhabi"
+	case TrackIDTexas:
+		return "Texas"
+	case TrackIDBrazil:
+		return "Brazil"
+	case TrackIDAustria:
+		return "Austria"
+	case TrackIDSochi:
+		return "Sochi"
+	case TrackIDMexico:
+		return "Mexico"
+	case TrackIDBaku:
+		return "Baku"
+	case TrackIDBahrainShort:
+		return "Bahrain Short"
+	case TrackIDSilverstoneShort:
+		return "Silverstone Short"
+	case TrackIDTexasShort:
+		return "Texas Short"
+	case TrackIDSuzukaShort:
+		return "Suzuka Short"
+	case TrackIDHanoi:
+		return "Hanoi"
+	case TrackIDZandvoort:
+		return "Zandvoort"
+	}
+
+	return "Unknown"
 }
 
 type PacketSessionData struct {
 	Header                    PacketHeader              // Header
-	Weather                   uint8                     // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
-	TrackTemperature          int8                      // Track temp. in degrees celsius
-	AirTemperature            int8                      // Air temp. in degrees celsius
+	Weather                   Weather                   // Weather - 0 = clear, 1 = light cloud, 2 = overcast // 3 = light rain, 4 = heavy rain, 5 = storm
+	TrackTemperature          CelciusTemperature        // Track temp. in degrees celsius
+	AirTemperature            CelciusTemperature        // Air temp. in degrees celsius
 	TotalLaps                 uint8                     // Total number of laps in this race
 	TrackLength               uint16                    // Track length in metres
 	SessionType               SessionType               // 0 = unknown, 1 = P1, 2 = P2, 3 = P3, 4 = Short P // 5 = Q1, 6 = Q2, 7 = Q3, 8 = Short Q, 9 = OSQ // 10 = R, 11 = R2, 12 = Time Trial
-	TrackID                   int8                      // -1 for unknown, 0-21 for tracks, see appendix
+	TrackID                   TrackID                   // -1 for unknown, 0-21 for tracks, see appendix
 	Formula                   uint8                     // Formula, 0 = F1 Modern, 1 = F1 Classic, 2 = F2, // 3 = F1 Generic
 	SessionTimeLeft           uint16                    // Time left in session in seconds
 	SessionDuration           uint16                    // Session duration in seconds
