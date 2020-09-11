@@ -1,5 +1,7 @@
 package libeffone
 
+import "fmt"
+
 type PacketHeaderPacketID uint8
 
 const (
@@ -39,7 +41,7 @@ func (pid PacketHeaderPacketID) String() string {
 		return "Lobby Info"
 	}
 
-	return "Unknown packet"
+	return fmt.Sprintf("Unknown packet (%d)", pid)
 }
 
 type TeamID uint8

@@ -63,22 +63,87 @@ func read(conn *net.UDPConn) {
 		return
 	}
 
-	fmt.Println(pkt.PacketID, pkt)
-	if pkt.PacketID == f1.PacketIDCarStatus {
-		var cspkt f1.CarStatusData
+	//fmt.Println(pkt.PacketID, pkt)
+	switch pkt.PacketID {
+	case f1.PacketIDMotion:
+		var mpkt f1.PacketMotionData
+		merr := binary.Read(buf, binary.LittleEndian, &mpkt)
+		if merr != nil {
+			fmt.Println("MotionData: binary read failed")
+			return
+		}
+		fmt.Println(mpkt)
+	case f1.PacketIDSession:
+		var spkt f1.PacketSessionData
+		serr := binary.Read(buf, binary.LittleEndian, &spkt)
+		if serr != nil {
+			fmt.Println("SessionData: binary read failed")
+			return
+		}
+		fmt.Println(spkt)
+	case f1.PacketIDLapData:
+		var ldpkt f1.PacketLapData
+		lderr := binary.Read(buf, binary.LittleEndian, &ldpkt)
+		if lderr != nil {
+			fmt.Println("LapData: binary read failed")
+			return
+		}
+		fmt.Println(ldpkt)
+	case f1.PacketIDEvent:
+		var epkt f1.PacketEventData
+		eerr := binary.Read(buf, binary.LittleEndian, &epkt)
+		if eerr != nil {
+			fmt.Println("EventData: binary read failed")
+			return
+		}
+		fmt.Println(epkt)
+	case f1.PacketIDParticipants:
+		var ppkt f1.PacketParticipantsData
+		perr := binary.Read(buf, binary.LittleEndian, &ppkt)
+		if perr != nil {
+			fmt.Println("ParticipantsData: binary read failed")
+			return
+		}
+		fmt.Println(ppkt)
+	case f1.PacketIDCarSetups:
+		var cspkt f1.PacketCarSetupData
 		cserr := binary.Read(buf, binary.LittleEndian, &cspkt)
 		if cserr != nil {
-			fmt.Println("CarStatus: binary read failed")
+			fmt.Println("CarSetupData: binary read failed")
 			return
 		}
 		fmt.Println(cspkt)
-	} else if pkt.PacketID == f1.PacketIDCarTelemetry {
+	case f1.PacketIDCarTelemetry:
 		var ctpkt f1.CarTelemetryData
 		cterr := binary.Read(buf, binary.LittleEndian, &ctpkt)
 		if cterr != nil {
-			fmt.Println("CarTelemetry: binary read failed")
+			fmt.Println("CarTelemetryData: binary read failed")
 			return
 		}
 		fmt.Println(ctpkt)
+	case f1.PacketIDCarStatus:
+		var cspkt f1.CarStatusData
+		cserr := binary.Read(buf, binary.LittleEndian, &cspkt)
+		if cserr != nil {
+			fmt.Println("CarStatusData: binary read failed")
+			return
+		}
+		fmt.Println(cspkt)
+	case f1.PacketIDFinalClassification:
+		var fcpkt f1.PacketFinalClassificationData
+		fcerr := binary.Read(buf, binary.LittleEndian, &fcpkt)
+		if fcerr != nil {
+			fmt.Println("FinalClassificationData: binary read failed")
+			return
+		}
+		fmt.Println(fcpkt)
+	case f1.PacketIDLobbyInfo:
+		var lipkt f1.PacketLobbyInfoData
+		lierr := binary.Read(buf, binary.LittleEndian, &lipkt)
+		if lierr != nil {
+			fmt.Println("LobbyInfoData: binary read failed")
+			return
+		}
+		fmt.Println(lipkt)
 	}
 }
