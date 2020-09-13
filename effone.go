@@ -63,8 +63,12 @@ func read(conn *net.UDPConn) {
 		return
 	}
 
-	//fmt.Println(pkt.PacketID, pkt)
-	switch pkt.PacketID {
+	parse(pkt.PacketID, tmp)
+}
+
+func parse(pid f1.PacketHeaderPacketID, data []byte) {
+	buf := bytes.NewBuffer(data)
+	switch pid {
 	case f1.PacketIDMotion:
 		var mpkt f1.PacketMotionData
 		merr := binary.Read(buf, binary.LittleEndian, &mpkt)
@@ -145,5 +149,7 @@ func read(conn *net.UDPConn) {
 			return
 		}
 		fmt.Println(lipkt)
+	default:
+		fmt.Println("Unknown packet: %s", pid)
 	}
 }

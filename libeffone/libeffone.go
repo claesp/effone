@@ -486,6 +486,21 @@ type PacketHeader struct {
 	SecondaryPlayerCarIndex uint8                // Index of secondary player's car in the array (splitscreen) // 255 if no second player
 }
 
+func (ph PacketHeader) String() string {
+	s := fmt.Sprintf("F: %d, Ver: %d.%d.%d, ID: %s, SID: %d, Fr: %d, PCI: %d",
+		ph.PacketFormat,
+		ph.GameMajorVersion,
+		ph.GameMinorVersion,
+		ph.PacketVersion,
+		ph.PacketID,
+		ph.SessionUID,
+		ph.FrameIdentifier,
+		ph.PlayerCarIndex,
+	)
+
+	return s
+}
+
 type CarMotionData struct {
 	WorldPositionX         float32 // World space X position
 	WorldPositionY         float32 // World space Y position
@@ -507,6 +522,25 @@ type CarMotionData struct {
 	Roll                   float32 // Roll angle in radians
 }
 
+func (cmd CarMotionData) String() string {
+	s := fmt.Sprintf("W: %f-%f-%f, Vel: %f-%f-%f, Fwd: %d-%d-%d, Rgh: %d-%d-%d",
+		cmd.WorldPositionX,
+		cmd.WorldPositionY,
+		cmd.WorldPositionZ,
+		cmd.WorldVelocityX,
+		cmd.WorldVelocityY,
+		cmd.WorldVelocityZ,
+		cmd.WorldForwardDirectionX,
+		cmd.WorldForwardDirectionY,
+		cmd.WorldForwardDirectionZ,
+		cmd.WorldRightDirectionX,
+		cmd.WorldRightDirectionY,
+		cmd.WorldRightDirectionZ,
+	)
+
+	return s
+}
+
 type PacketMotionData struct {
 	Header                 PacketHeader      // Header
 	CarMotionData          [22]CarMotionData // Data for all cars on track // Extra player car ONLY data below:
@@ -525,6 +559,14 @@ type PacketMotionData struct {
 	AngularAccelerationY   float32           // Angular velocity y-component
 	AngularAccelerationZ   float32           // Angular velocity z-component
 	FrontWheelsAngle       float32           // Current front wheels angle in radians
+}
+
+func (pmd PacketMotionData) String() string {
+	s := fmt.Sprintf("%s\n", pmd.Header)
+	for cidx, cmd := range pmd.CarMotionData {
+		s = fmt.Sprintf("%s  %d: %s\n", s, cidx, cmd)
+	}
+	return s
 }
 
 type ZoneFlag int8
